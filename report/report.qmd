@@ -14,7 +14,7 @@ format:
 
 # Introduction and research question
 
-Medicare spending per beneficiary has long varied across the United States. Dartmouth Atlas researchers found that patients in higher-spending regions were hospitalized more often without receiving better care,[^dartmouth] and an Institute of Medicine committee advised targeting provider decisions rather than geography.[^iom]
+Medicare spending per beneficiary has long varied across the United States, and an Institute of Medicine committee advised targeting provider decisions rather than geography.[^iom]
 
 Our research question is: how did Medicare spending per beneficiary change across U.S. states from 2014 to 2024, and do places that spend more also use more hospital care? As an extension, we ask whether rural and urban counties differ.
 
@@ -22,7 +22,7 @@ Our research question is: how did Medicare spending per beneficiary change acros
 
 We use the CMS Medicare Geographic Variation file (national, state and county, 2014–2024).[^cms] The raw file has 36,994 rows; after cleaning, we analyze 50 states plus DC (561 state-year rows) and 35,102 county-year rows. Counties were joined to the USDA Rural-Urban Continuum Codes 2023 by FIPS code.[^usda] Of 621 county rows without a code, 550 are CMS "-UNKNOWN" placeholders; the rest are former Connecticut counties and renamed Alaska and South Dakota counties.
 
-All measures describe Original Medicare (fee-for-service) beneficiaries only,[^dict] a shrinking group: its share of all beneficiaries fell from about 59% in 2014 to 39% in 2024, while Medicare Advantage rose from 28% to 47% (@fig-enrollment).
+All measures describe Original Medicare (fee-for-service) beneficiaries only, a shrinking group: its share of all beneficiaries fell from about 59% in 2014 to 39% in 2024, while Medicare Advantage rose from 28% to 47% (@fig-enrollment).
 
 ![Composition of all Medicare beneficiaries by enrollment type, 2014–2024.](figures/fig7_enrollment_mix.png){#fig-enrollment}
 
@@ -63,7 +63,7 @@ Averages are weighted by Original Medicare beneficiaries (readmission rates by e
 
 : Correlation of 2024 standardized spending per Original Medicare beneficiary with inpatient stays per 1,000 beneficiaries, using total and non-hospital spending. {#tbl-corr}
 
-**Higher spending does not come with fewer readmissions.** The positive readmission correlation is consistent with the Dartmouth finding that higher-spending regions do not deliver better care.
+**Higher spending does not come with fewer readmissions.** The readmission correlation is positive, not negative.
 
 ## Rural vs urban counties
 
@@ -91,14 +91,8 @@ Code and data are available at [REPO URL]. Running `notebooks/01_cleaning.ipynb`
 
 Over 2017–2024, a 2-year moving average forecast national spending more accurately than a 3-year average (MAD \$608.81 vs \$697.17; MAPE 5.46% vs 6.21%). Both underestimated 2023–2024 by about \$1,000 or more, suggesting faster post-pandemic growth; the 2-year method forecasts about \$12,220 for 2025.
 
-[^cms]: Centers for Medicare & Medicaid Services (CMS). *Medicare Geographic Variation – by National, State & County* (2014–2024 public use file). data.cms.gov; listed on data.gov as issued December 9, 2025 and last modified May 15, 2026. Accessed [VERIFY: download date]. <https://data.cms.gov/summary-statistics-on-use-and-payments/medicare-geographic-comparisons/medicare-geographic-variation-by-national-state-county>
-
-[^dict]: Centers for Medicare & Medicaid Services (CMS). *2014–2024 Original Medicare Geographic Variation by National, State & County Data Dictionary*. data.cms.gov, 2026 [VERIFY: the PDF is undated]. Its notes define Original Medicare as "the traditional Medicare Fee-for-Service (FFS) program covering Part A and Part B" and state that all variables are suppressed (marked "\*") where the count of beneficiaries or users is less than 11. <https://data.cms.gov/sites/default/files/2026-05/267755af-8e26-4bcd-a3ea-fef41c96b7fc/2014-2024%20Original%20Medicare%20Geographic%20Variation%20Data%20Dictionary.pdf>
+[^cms]: Centers for Medicare & Medicaid Services (CMS). *Medicare Geographic Variation – by National, State & County* (2014–2024 public use file). data.cms.gov; listed on data.gov as issued December 9, 2025 and last modified May 15, 2026. <https://data.cms.gov/summary-statistics-on-use-and-payments/medicare-geographic-comparisons/medicare-geographic-variation-by-national-state-county>. Its data dictionary, *2014–2024 Original Medicare Geographic Variation by National, State & County Data Dictionary* (CMS, 2026 [VERIFY: the PDF is undated]), defines the spending and utilization measures for Original Medicare beneficiaries, which it describes as "the traditional Medicare Fee-for-Service (FFS) program covering Part A and Part B", and notes that all variables are suppressed (marked "\*") where the count of beneficiaries or users is less than 11. <https://data.cms.gov/sites/default/files/2026-05/267755af-8e26-4bcd-a3ea-fef41c96b7fc/2014-2024%20Original%20Medicare%20Geographic%20Variation%20Data%20Dictionary.pdf>
 
 [^usda]: U.S. Department of Agriculture, Economic Research Service (USDA ERS). *Rural-Urban Continuum Codes, 2023*. Released January 2024. Codes 1–3 classify metropolitan counties by metro-area population; codes 4–9 classify nonmetropolitan counties by urban population and adjacency to a metro area. <https://www.ers.usda.gov/data-products/rural-urban-continuum-codes>
 
-[^pandas]: The pandas development team. "pandas.Series.corr." *pandas documentation* (pandas 3.0). Pearson ("standard correlation coefficient") and Spearman ("Spearman rank correlation") coefficients were computed with this method. <https://pandas.pydata.org/docs/reference/api/pandas.Series.corr.html>
-
-[^dartmouth]: Fisher ES, Goodman DC, Skinner J, Bronner K. *Health Care Spending, Quality, and Outcomes: More Isn't Always Better*. A Dartmouth Atlas Project Topic Brief. The Dartmouth Institute for Health Policy and Clinical Practice; February 27, 2009. <https://data.dartmouthatlas.org/downloads/reports/Spending_Brief_022709.pdf>. See also The Dartmouth Atlas of Health Care, <https://www.dartmouthatlas.org/>.
-
-[^iom]: Institute of Medicine. *Variation in Health Care Spending: Target Decision Making, Not Geography*. Newhouse JP, Garber AM, Graham RP, McCoy MA, Mancher M, Kibria A, editors. Washington, DC: The National Academies Press; 2013. <https://doi.org/10.17226/18393>
+[^pandas]: The pandas development team. "pandas.DataFrame.corr." *pandas documentation* (pandas 3.0). Source for the Pearson ("standard correlation coefficient") and Spearman ("Spearman rank correlation") methods. <https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html>
